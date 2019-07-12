@@ -5,6 +5,7 @@ import "./App.css";
 import ProjectForm from "./components/Project/ProjectForm";
 import Smurfs from "./components/Project/ProjectsList";
 import Navbar from "./components/Navbar";
+import ActionsList from "./components/Action/ActionsList";
 
 class App extends Component {
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={Smurfs} />
           <Route exact path="/project-form" component={ProjectForm} />
           <Route exact path="/project/:projectId" component={ProjectForm} />
+          <Route exact path="/action/:projectId" component={ActionsList} />
         </div>
       </Router>
     );

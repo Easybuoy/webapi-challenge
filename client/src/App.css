@@ -117,3 +117,9 @@
   color: white;
   background-color: darkcyan;
 }
+
+.Project a {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}

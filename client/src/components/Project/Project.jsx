@@ -6,6 +6,7 @@ const Project = props => {
   const { id, name, description } = props.project;
   return (
     <div className="Project">
+
       <h3>{name}</h3>
       <strong>{description}</strong>
 
@@ -20,7 +21,9 @@ const Project = props => {
         <button>
           <Link to={`/project/${id}`}>Update</Link>
         </button>
+
       </div>
+      <Link to={`/action/${id}`}>View Project Actions</Link>
     </div>
   );
 };

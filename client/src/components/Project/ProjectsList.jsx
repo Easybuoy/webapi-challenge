@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Smurf from "./Project";
+import Project from "./Project";
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class ProjectsList extends Component {
 
         {this.state.projects.map(project => {
           return (
-            <Smurf
+            <Project
               project={project}
               key={project.id}
               deleteProject={this.deleteProject}
@@ -49,7 +49,7 @@ class ProjectsList extends Component {
   }
 }
 
-Smurf.defaultProps = {
+ProjectsList.defaultProps = {
   projects: []
 };
 
