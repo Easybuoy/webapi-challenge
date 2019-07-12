@@ -8,6 +8,29 @@ const {
   validateProjectId,
   validateActionId
 } = require("../middlewares");
+
+/**
+ * METHOD: GET
+ * ROUTE: /api/actions/
+ * PURPOSE: Get all actions
+ */
+router.get("/", async (req, res) => {
+  try {
+    const actions = await Action.get();
+    if (actions.length > 0) {
+      return res.json({ status: "success", data: actions });
+    }
+
+    return res
+      .status(404)
+      .json({ status: "error", message: "Action not found" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: "error", message: "Error getting action(s)" });
+  }
+});
+
 /**
  * METHOD: POST
  * ROUTE: /api/actions/:id/
