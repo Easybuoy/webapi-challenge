@@ -1,9 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const Project = require("./data/helpers/projectModel");
-const Action = require("./data/helpers/actionModel");
-
+const Project = require("../data/helpers/projectModel");
+const { validateProject, validateProjectId } = require("../middlewares");
 /**
  * METHOD: POST
  * ROUTE: /api/projects/
@@ -27,32 +26,6 @@ router.post("/", validateProject, async (req, res) => {
     return res
       .status(500)
       .json({ status: "error", message: "Error creating project" });
-  }
-});
-
-/**
- * METHOD: POST
- * ROUTE: /api/users/:id/posts
- * PURPOSE: Create new post for a user
- */
-router.post("/:id/posts", validateProjectId, validatePost, async (req, res) => {
-  try {
-    const { text } = req.body;
-
-    const newPost = await PostDb.insert({ user_id: req.project.id, text });
-    if (newPost) {
-      return res
-        .status(201)
-        .json({ status: "success", message: "Post Created Successfully" });
-    }
-
-    return res
-      .status(500)
-      .json({ status: "error", message: "Error creating post for user" });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ status: "error", message: "Error creating post for user" });
   }
 });
 
@@ -124,8 +97,8 @@ router.get("/:id", validateProjectId, async (req, res) => {
 
 /**
  * METHOD: DELETE
- * ROUTE: /api/users/:id
- * PURPOSE: Delete a user
+ * ROUTE: /api/projects/:id
+ * PURPOSE: Delete a project
  */
 router.delete("/:id", validateProjectId, async (req, res) => {
   try {
@@ -149,8 +122,8 @@ router.delete("/:id", validateProjectId, async (req, res) => {
 
 /**
  * METHOD: PUT
- * ROUTE: /api/users/:id
- * PURPOSE: Update a user
+ * ROUTE: /api/projects/:id
+ * PURPOSE: Update a project
  */
 router.put("/:id", validateProjectId, validateProject, async (req, res) => {
   try {
@@ -175,53 +148,5 @@ router.put("/:id", validateProjectId, validateProject, async (req, res) => {
       .json({ status: "error", message: "Error updating project" });
   }
 });
-
-//custom middleware
-
-async function validateProjectId(req, res, next) {
-  const { id } = req.params;
-  const project = await Project.get(id);
-
-  if (!project) {
-    return res.status(400).json({ message: "invalid project id" });
-  }
-
-  req.project = project;
-  next();
-}
-
-function validateProject(req, res, next) {
-  const { body } = req;
-
-  if (!body) {
-    return res.status(400).json({ message: "missing user data" });
-  }
-
-  if (!body.name) {
-    return res.status(400).json({ message: "missing required name field" });
-  }
-
-  if (!body.description) {
-    return res
-      .status(400)
-      .json({ message: "missing required description field" });
-  }
-
-  next();
-}
-
-function validatePost(req, res, next) {
-  const { body } = req;
-
-  if (!body) {
-    return res.status(400).json({ message: "missing post data" });
-  }
-
-  if (!body.text) {
-    return res.status(400).json({ message: "missing required text field" });
-  }
-
-  next();
-}
 
 module.exports = router;
