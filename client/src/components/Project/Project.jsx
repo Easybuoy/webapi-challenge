@@ -33,6 +33,6 @@ Project.defaultProps = {
 export default Project;
 
 Project.propTypes = {
-  project: PropTypes.func.isRequired,
-  deleteSmurf: PropTypes.func.isRequired
+  project: PropTypes.object.isRequired,
+  deleteProject: PropTypes.func.isRequired
 };

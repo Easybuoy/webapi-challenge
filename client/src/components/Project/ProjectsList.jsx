@@ -50,7 +50,7 @@ class ProjectsList extends Component {
 }
 
 Smurf.defaultProps = {
-  smurfs: []
+  projects: []
 };
 
 export default ProjectsList;
