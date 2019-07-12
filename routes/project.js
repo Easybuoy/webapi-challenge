@@ -71,31 +71,6 @@ router.get("/:id", validateProjectId, async (req, res) => {
 });
 
 /**
- * METHOD: GET
- * ROUTE: /api/users/:id/posts
- * PURPOSE: Get single users post(s)
- */
-// router.get("/:id/posts", validateProjectId, async (req, res) => {
-//   try {
-//     const posts = await UserDb.getUserPosts(req.user.id);
-//     if (posts.length > 0) {
-//       return res.json({
-//         status: "success",
-//         message: "User post(s) gotten successfully",
-//         data: posts
-//       });
-//     }
-//     return res
-//       .status(404)
-//       .json({ status: "error", message: "User Post not found" });
-//   } catch (error) {
-//     return res
-//       .status(500)
-//       .json({ status: "error", message: "Error getting user post(s)" });
-//   }
-// });
-
-/**
  * METHOD: DELETE
  * ROUTE: /api/projects/:id
  * PURPOSE: Delete a project
@@ -146,6 +121,31 @@ router.put("/:id", validateProjectId, validateProject, async (req, res) => {
     return res
       .status(500)
       .json({ status: "error", message: "Error updating project" });
+  }
+});
+
+/**
+ * METHOD: GET
+ * ROUTE: /api/projects/:id/actions
+ * PURPOSE: Get project action(s)
+ */
+router.get("/:id/actions", validateProjectId, async (req, res) => {
+  try {
+    const actions = await Project.getProjectActions(req.project.id);
+    if (actions.length > 0) {
+      return res.json({
+        status: "success",
+        message: "Project action  gotten successfully",
+        data: actions
+      });
+    }
+    return res
+      .status(404)
+      .json({ status: "error", message: "Project Actions not found" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: "error", message: "Error getting project action" });
   }
 });
 

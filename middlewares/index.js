@@ -1,4 +1,5 @@
 const Project = require("../data/helpers/projectModel");
+const Action = require("../data/helpers/actionModel");
 
 function validateAction(req, res, next) {
   const { body } = req;
@@ -33,6 +34,20 @@ async function validateProjectId(req, res, next) {
   next();
 }
 
+const validateActionId = async (req, res, next) => {
+  const { id } = req.params;
+
+  const action = await Action.get(id);
+
+  if (!action) {
+    return res.status(400).json({ message: "invalid action id" });
+  }
+
+  req.action = action;
+
+  next();
+};
+
 function validateProject(req, res, next) {
   const { body } = req;
 
@@ -56,5 +71,6 @@ function validateProject(req, res, next) {
 module.exports = {
   validateAction,
   validateProject,
-  validateProjectId
+  validateProjectId,
+  validateActionId
 };
