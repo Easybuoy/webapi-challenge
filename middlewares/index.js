@@ -1,3 +1,5 @@
+const Project = require("../data/helpers/projectModel");
+
 function validateAction(req, res, next) {
   const { body } = req;
 
@@ -20,6 +22,7 @@ function validateAction(req, res, next) {
 
 async function validateProjectId(req, res, next) {
   const { id } = req.params;
+
   const project = await Project.get(id);
 
   if (!project) {
