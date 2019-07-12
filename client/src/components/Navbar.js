@@ -7,7 +7,7 @@ export default function Navbar() {
       <NavLink to="/">
         <div>Projects</div>
       </NavLink>
-      <NavLink to="smurf-form">
+      <NavLink to="project-form">
         <div>Add Project</div>
       </NavLink>
     </nav>

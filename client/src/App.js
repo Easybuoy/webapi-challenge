@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
-import SmurfForm from "./components/SmurfForm";
-import Smurfs from "./components/ProjectsList";
+import ProjectForm from "./components/Project/ProjectForm";
+import Smurfs from "./components/Project/ProjectsList";
 import Navbar from "./components/Navbar";
 
 class App extends Component {
@@ -16,8 +16,8 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path="/" component={Smurfs} />
-          <Route exact path="/smurf-form" component={SmurfForm} />
-          <Route exact path="/project/:smurfId" component={SmurfForm} />
+          <Route exact path="/project-form" component={ProjectForm} />
+          <Route exact path="/project/:projectId" component={ProjectForm} />
         </div>
       </Router>
     );

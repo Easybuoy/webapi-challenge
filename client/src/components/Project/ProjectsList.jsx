@@ -20,7 +20,8 @@ class ProjectsList extends Component {
       .then(res => this.setState({ projects: res.data.data }))
       .catch(err => this.setState({ error: err.message }));
   };
-  deleteSmurf = id => {
+  
+  deleteProject = id => {
     if (window.confirm("Are you sure you want to delete this project")) {
       axios
         .delete(`http://localhost:3300/api/projects/${id}`)
@@ -39,7 +40,7 @@ class ProjectsList extends Component {
             <Smurf
               project={project}
               key={project.id}
-              deleteSmurf={this.deleteSmurf}
+              deleteProject={this.deleteProject}
             />
           );
         })}

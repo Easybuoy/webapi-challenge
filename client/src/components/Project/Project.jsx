@@ -7,12 +7,12 @@ const Project = props => {
   return (
     <div className="Smurf">
       <h3>{name}</h3>
-      <strong>{description} tall</strong>
+      <strong>{description}</strong>
 
       <div className="actions">
         <button
           onClick={() => {
-            props.deleteSmurf(id);
+            props.deleteProject(id);
           }}
         >
           Delete
