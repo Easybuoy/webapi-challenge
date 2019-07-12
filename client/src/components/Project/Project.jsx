@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Project = props => {
   const { id, name, description } = props.project;
   return (
-    <div className="Smurf">
+    <div className="Project">
       <h3>{name}</h3>
       <strong>{description}</strong>
 

@@ -32,7 +32,7 @@ class ProjectsList extends Component {
 
   render() {
     return (
-      <div className="Smurfs">
+      <div className="Projects">
         <h1>Projects</h1>
 
         {this.state.projects.map(project => {

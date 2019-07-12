@@ -28,35 +28,35 @@
   text-decoration: none;
 }
 
-.Smurfs {
+.Projects {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.Smurfs h1 {
+.Projects h1 {
   width: 100%;
   text-align: center;
 }
 
-.Smurf {
-  width: 20%; 
+.Project {
+  width: 20%;
   padding: 1rem 0;
   margin: 1rem;
   background-color: bisque;
   text-align: center;
 }
 
-.Smurf h3 {
+.Project h3 {
   color: red;
 }
 
-.Smurf .actions {
+.Project .actions {
   width: 100%;
   margin: 1rem 0;
 }
 
-.Smurf button {
+.Project button {
   padding: 0.5rem;
   margin: 0 0.4rem;
   outline: none;
@@ -67,17 +67,17 @@
   color: white;
 }
 
-.Smurf button:hover {
+.Project button:hover {
   color: darkcyan;
   background-color: white;
 }
 
-.Smurf button a {
+.Project button a {
   text-decoration: none;
   color: inherit;
 }
 
-.SmurfForm {
+.ProjectForm {
   width: 50%;
   display: flex;
   margin: 3rem auto;
@@ -86,14 +86,14 @@
   padding: 1rem 0;
 }
 
-.SmurfForm form {
+.ProjectForm form {
   width: 100%;
   padding: 0;
   margin: 0;
   text-align: center;
 }
 
-.SmurfForm form input {
+.ProjectForm form input {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -103,7 +103,7 @@
   outline: none;
 }
 
-.SmurfForm form button {
+.ProjectForm form button {
   padding: 1rem;
   border: none;
   outline: none;
@@ -113,7 +113,7 @@
   font-size: 1rem;
 }
 
-.SmurfForm form button:hover {
+.ProjectForm form button:hover {
   color: white;
   background-color: darkcyan;
 }

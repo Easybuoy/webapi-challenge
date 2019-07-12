@@ -14,16 +14,18 @@ class ProjectForm extends Component {
 
   async componentDidMount() {
     const { projectId } = this.props.match.params;
-    let projectData = await axios.get(
-      `http://localhost:3300/api/projects/${projectId}`
-    );
-    if (projectData.status === 200) {
-      projectData = projectData.data.data;
+    if (projectId) {
+      let projectData = await axios.get(
+        `http://localhost:3300/api/projects/${projectId}`
+      );
+      if (projectData.status === 200) {
+        projectData = projectData.data.data;
 
-      this.setState({
-        name: projectData.name || "",
-        description: projectData.description || ""
-      });
+        this.setState({
+          name: projectData.name || "",
+          description: projectData.description || ""
+        });
+      }
     }
   }
 
@@ -79,7 +81,7 @@ class ProjectForm extends Component {
     }
 
     return (
-      <div className="SmurfForm">
+      <div className="ProjectForm">
         <form onSubmit={eventHandler}>
           <input
             onChange={this.handleInputChange}
