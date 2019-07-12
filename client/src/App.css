@@ -2,32 +2,118 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.Navbar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: bisque;
+  padding: 0.5rem 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.Navbar div {
+  padding: 1rem 1rem;
+  margin: 0 1rem;
+  background-color: darkcyan;
+  cursor: pointer;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Navbar div:hover {
+  background-color: white;
+  color: darkcyan;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Navbar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Smurfs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Smurfs h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.Smurf {
+  width: 20%;
+  padding: 1rem 0;
+  margin: 1rem;
+  background-color: bisque;
+  text-align: center;
+}
+
+.Smurf h3 {
+  color: red;
+}
+
+.Smurf .actions {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.Smurf button {
+  padding: 0.5rem;
+  margin: 0 0.4rem;
+  outline: none;
+  cursor: pointer;
+  background-color: darkcyan;
+  border: none;
+  font-size: 1rem;
+  color: white;
+}
+
+.Smurf button:hover {
+  color: darkcyan;
+  background-color: white;
+}
+
+.Smurf button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.SmurfForm {
+  width: 50%;
+  display: flex;
+  margin: 3rem auto;
+  background-color: bisque;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.SmurfForm form {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.SmurfForm form input {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 1rem 0.3rem;
+  margin: 1rem auto;
+  border: none;
+  outline: none;
+}
+
+.SmurfForm form button {
+  padding: 1rem;
+  border: none;
+  outline: none;
+  color: darkcyan;
+  background-color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.SmurfForm form button:hover {
+  color: white;
+  background-color: darkcyan;
 }
