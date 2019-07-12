@@ -6,27 +6,27 @@ const Action = require("./data/helpers/actionModel");
 
 /**
  * METHOD: POST
- * ROUTE: /api/users/
- * PURPOSE: Create new user
+ * ROUTE: /api/projects/
+ * PURPOSE: Create new project
  */
 router.post("/", validateProject, async (req, res) => {
   try {
-    const { name } = req.body;
-    const newUser = await UserDb.insert({ name });
+    const { name, description } = req.body;
+    const newProject = await Project.insert({ name, description });
 
-    if (newUser) {
+    if (newProject) {
       return res
         .status(201)
-        .json({ status: "success", message: "User Created Successfully" });
+        .json({ status: "success", message: "Project Created Successfully" });
     }
 
     return res
       .status(500)
-      .json({ status: "error", message: "Error creating user" });
+      .json({ status: "error", message: "Error creating project" });
   } catch (error) {
     return res
       .status(500)
-      .json({ status: "error", message: "Error creating user" });
+      .json({ status: "error", message: "Error creating project" });
   }
 });
 
@@ -39,7 +39,7 @@ router.post("/:id/posts", validateProjectId, validatePost, async (req, res) => {
   try {
     const { text } = req.body;
 
-    const newPost = await PostDb.insert({ user_id: req.user.id, text });
+    const newPost = await PostDb.insert({ user_id: req.project.id, text });
     if (newPost) {
       return res
         .status(201)
@@ -87,13 +87,13 @@ router.get("/:id", validateProjectId, async (req, res) => {
   try {
     return res.json({
       status: "success",
-      data: req.user,
-      message: "User gotten successfully"
+      data: req.project,
+      message: "Project gotten successfully"
     });
   } catch (error) {
     return res
       .status(500)
-      .json({ status: "error", message: "Error getting user detail" });
+      .json({ status: "error", message: "Error getting project detail" });
   }
 });
 
@@ -102,25 +102,25 @@ router.get("/:id", validateProjectId, async (req, res) => {
  * ROUTE: /api/users/:id/posts
  * PURPOSE: Get single users post(s)
  */
-router.get("/:id/posts", validateProjectId, async (req, res) => {
-  try {
-    const posts = await UserDb.getUserPosts(req.user.id);
-    if (posts.length > 0) {
-      return res.json({
-        status: "success",
-        message: "User post(s) gotten successfully",
-        data: posts
-      });
-    }
-    return res
-      .status(404)
-      .json({ status: "error", message: "User Post not found" });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ status: "error", message: "Error getting user post(s)" });
-  }
-});
+// router.get("/:id/posts", validateProjectId, async (req, res) => {
+//   try {
+//     const posts = await UserDb.getUserPosts(req.user.id);
+//     if (posts.length > 0) {
+//       return res.json({
+//         status: "success",
+//         message: "User post(s) gotten successfully",
+//         data: posts
+//       });
+//     }
+//     return res
+//       .status(404)
+//       .json({ status: "error", message: "User Post not found" });
+//   } catch (error) {
+//     return res
+//       .status(500)
+//       .json({ status: "error", message: "Error getting user post(s)" });
+//   }
+// });
 
 /**
  * METHOD: DELETE
@@ -129,21 +129,21 @@ router.get("/:id/posts", validateProjectId, async (req, res) => {
  */
 router.delete("/:id", validateProjectId, async (req, res) => {
   try {
-    const deletedUser = await UserDb.remove(req.user.id);
+    const deletedProject = await Project.remove(req.project.id);
 
-    if (deletedUser === 1) {
+    if (deletedProject === 1) {
       return res.json({
         status: "success",
-        message: "User deleted successfully"
+        message: "Project deleted successfully"
       });
     }
     return res
       .status(500)
-      .json({ status: "error", message: "Error deleting user" });
+      .json({ status: "error", message: "Error deleting project" });
   } catch (error) {
     return res
       .status(500)
-      .json({ status: "error", message: "Error deleting user" });
+      .json({ status: "error", message: "Error deleting project" });
   }
 });
 
@@ -154,21 +154,25 @@ router.delete("/:id", validateProjectId, async (req, res) => {
  */
 router.put("/:id", validateProjectId, validateProject, async (req, res) => {
   try {
-    const { name } = req.body;
-    const updatedUser = await UserDb.update(req.user.id, { name });
-    if (updatedUser === 1) {
+    const { name, description } = req.body;
+
+    const updatedProject = await Project.update(req.project.id, {
+      name,
+      description
+    });
+    if (updatedProject) {
       return res.json({
         status: "success",
-        message: "User updated successfully"
+        message: "Project updated successfully"
       });
     }
     return res
       .status(500)
-      .json({ status: "error", message: "Error updating user" });
+      .json({ status: "error", message: "Error updating project" });
   } catch (error) {
     return res
       .status(500)
-      .json({ status: "error", message: "Error updating user" });
+      .json({ status: "error", message: "Error updating project" });
   }
 });
 
@@ -176,13 +180,13 @@ router.put("/:id", validateProjectId, validateProject, async (req, res) => {
 
 async function validateProjectId(req, res, next) {
   const { id } = req.params;
-  const user = await Project.get(id);
+  const project = await Project.get(id);
 
-  if (!user) {
-    return res.status(400).json({ message: "invalid user id" });
+  if (!project) {
+    return res.status(400).json({ message: "invalid project id" });
   }
 
-  req.user = user;
+  req.project = project;
   next();
 }
 
@@ -195,6 +199,12 @@ function validateProject(req, res, next) {
 
   if (!body.name) {
     return res.status(400).json({ message: "missing required name field" });
+  }
+
+  if (!body.description) {
+    return res
+      .status(400)
+      .json({ message: "missing required description field" });
   }
 
   next();
