@@ -13,23 +13,20 @@ class ProjectForm extends Component {
   }
 
   async componentDidMount() {
-    // const { projectId } = this.props.match.params;
-    // let smurfData = await axios.get("http://localhost:3333/smurfs");
-    // if (smurfData.status === 200) {
-    //   smurfData = smurfData.data;
-    //   let smurf = smurfData.find(
-    //     singleSmurf => singleSmurf.id === parseInt(projectId)
-    //   );
-    //   if (smurf) {
-    //     this.setState({
-    //       name: smurf.name || "",
-    //       age: smurf.age || "",
-    //       height: smurf.height || ""
-    //     });
-    //   }
-    // }
+    const { projectId } = this.props.match.params;
+    let projectData = await axios.get(
+      `http://localhost:3300/api/projects/${projectId}`
+    );
+    if (projectData.status === 200) {
+      projectData = projectData.data.data;
+
+      this.setState({
+        name: projectData.name || "",
+        description: projectData.description || ""
+      });
+    }
   }
-  
+
   addProject = event => {
     event.preventDefault();
     const payload = {
@@ -58,12 +55,11 @@ class ProjectForm extends Component {
       description: this.state.description
     };
     axios
-      .put(`http://localhost:3333/smurfs/${projectId}`, payload)
+      .put(`http://localhost:3300/api/projects/${projectId}`, payload)
       .then(res => {
         this.setState({
           name: "",
-          age: "",
-          height: "",
+          description: "",
           success: true
         });
       });

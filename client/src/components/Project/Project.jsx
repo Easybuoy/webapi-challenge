@@ -27,16 +27,12 @@ const Project = props => {
 
 Project.defaultProps = {
   name: "",
-  height: "",
-  age: ""
+  description: "",
 };
 
 export default Project;
 
-// Smurf.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   name: PropTypes.string.isRequired,
-//   age: PropTypes.string.isRequired,
-//   height: PropTypes.string.isRequired,
-//   deleteSmurf: PropTypes.func.isRequired
-// };
+Project.propTypes = {
+  project: PropTypes.func.isRequired,
+  deleteSmurf: PropTypes.func.isRequired
+};
