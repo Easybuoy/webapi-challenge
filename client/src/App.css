@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+}
+
+.Navbar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: bisque;
+  padding: 0.5rem 0;
+}
+
+.Navbar div {
+  padding: 1rem 1rem;
+  margin: 0 1rem;
+  background-color: darkcyan;
+  cursor: pointer;
+  color: white;
+}
+
+.Navbar div:hover {
+  background-color: white;
+  color: darkcyan;
+}
+
+.Navbar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Projects {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Projects h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.Project {
+  width: 20%;
+  padding: 1rem 0;
+  margin: 1rem;
+  background-color: bisque;
+  text-align: center;
+}
+
+.Project h3 {
+  color: red;
+}
+
+.Project .actions {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.Project button {
+  padding: 0.5rem;
+  margin: 0 0.4rem;
+  outline: none;
+  cursor: pointer;
+  background-color: darkcyan;
+  border: none;
+  font-size: 1rem;
+  color: white;
+}
+
+.Project button:hover {
+  color: darkcyan;
+  background-color: white;
+}
+
+.Project button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ProjectForm {
+  width: 50%;
+  display: flex;
+  margin: 3rem auto;
+  background-color: bisque;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.ProjectForm form {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.ProjectForm form input {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 1rem 0.3rem;
+  margin: 1rem auto;
+  border: none;
+  outline: none;
+}
+
+.ProjectForm form button {
+  padding: 1rem;
+  border: none;
+  outline: none;
+  color: darkcyan;
+  background-color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.ProjectForm form button:hover {
+  color: white;
+  background-color: darkcyan;
+}
+
+.Project a {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}

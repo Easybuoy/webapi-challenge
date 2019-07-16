@@ -26,13 +26,20 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+  - Middlewares
+  - Routing
+
 - [ ] Describe Middleware?
+      A m`iddleware` is a function that can perform certain task and make changes to the request or response objects.
 
 - [ ] Describe a Resource?
-
+      A `resource` is an endpoint that performs either `Create, Read, Update or Delete` task.
 - [ ] What can the API return to help clients know if a request was successful?
+      The `API` can return statuscode in the `2xx` series e.g `201, 200`
 
 - [ ] How can we partition our application into sub-applications?
+      We can partition our application into sub-applications by `SRP (Single Responsibility Principle)` which is splitting our files in such a way that a file handles the logic partaining to that file.
+      e.g having a user controller file that handles all logic for user, having a userRoute file that handles all routes for user.
 
 ## Project Setup
 
